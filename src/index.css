@@ -1,10 +1,191 @@
 @import "tailwindcss";
 
+/* =============================================================
+   BHAG Labs Editorial Theme — shared across all solutions.
+   Mirrors bhag-labs-landing palette (cream / charcoal / terracotta
+   / ochre / forest) and remaps legacy "slate / brand / surface"
+   tokens so existing dark-theme markup flips to light editorial
+   without per-page rewrites.
+============================================================= */
+
 @theme {
+  /* Fonts */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --color-brand: #6366f1;
-  --color-brand-light: #818cf8;
-  --color-surface: #0f172a;
-  --color-surface-light: #1e293b;
-  --color-surface-border: #334155;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-subheading: 'Cormorant Garamond', Georgia, serif;
+
+  /* Editorial palette */
+  --color-cream: #f1ebe1;
+  --color-cream-dark: #e3d9c6;
+  --color-charcoal: #1a1a1a;
+  --color-terracotta: #c1502e;
+  --color-terracotta-dark: #a3401f;
+  --color-ochre: #c89b27;
+  --color-forest: #2a4942;
+  --color-sage: #8aa07c;
+  --color-dusty-rose: #c89b9b;
+
+  /* Brand aliases (legacy → editorial) */
+  --color-brand: #c1502e;
+  --color-brand-light: #d96b48;
+
+  /* Surface aliases (dark surfaces → cream surfaces) */
+  --color-surface: #f1ebe1;
+  --color-surface-light: #e3d9c6;
+  --color-surface-border: #1a1a1a;
+
+  /* Override slate so legacy dark-theme classes flip to light editorial.
+     Tailwind v4 lets us redefine --color-slate-*. We intentionally invert
+     the scale: slate-100 (was near-white) → near-charcoal, slate-950 (was
+     near-black) → near-cream, etc. This makes pages built with
+     bg-slate-950 / text-slate-100 / text-slate-400 read correctly on the
+     cream canvas without rewriting every class. */
+  --color-slate-50:  #fbf7ef;
+  --color-slate-100: #1a1a1a;
+  --color-slate-200: #2a2522;
+  --color-slate-300: #3a332e;
+  --color-slate-400: #6b6359;
+  --color-slate-500: #8a8073;
+  --color-slate-600: #b8ad99;
+  --color-slate-700: #d3c8b6;
+  --color-slate-800: #e3d9c6;
+  --color-slate-900: #ece4d4;
+  --color-slate-950: #f1ebe1;
+
+  /* Override pure white → charcoal so text-white reads on cream */
+  --color-white: #1a1a1a;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--color-terracotta); color: var(--color-cream); }
+}
+
+@layer utilities {
+  .font-heading    { font-family: var(--font-heading); }
+  .font-subheading { font-family: var(--font-subheading); }
+  .section-label {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-charcoal) 60%, transparent);
+  }
+}
+
+@layer components {
+  /* Glass nav (light) */
+  .glass-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: color-mix(in srgb, var(--color-cream) 90%, transparent);
+    border-bottom: 2px solid var(--color-charcoal);
+  }
+
+  /* Editorial card */
+  .editorial-card {
+    border: 1px solid var(--color-charcoal);
+    background: var(--color-cream);
+    transition: border-width .2s ease, background-color .2s ease, transform .2s ease;
+  }
+  .editorial-card:hover {
+    border-width: 2px;
+    background: var(--color-cream-dark);
+  }
+
+  /* Diamond divider */
+  .diamond-divider {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .diamond-divider::before,
+  .diamond-divider::after {
+    content: ''; flex: 1; height: 1px; background: currentColor; opacity: .3;
+  }
+
+  /* Section variants */
+  .section-light      { background: var(--color-cream);      color: var(--color-charcoal); }
+  .section-dark       { background: var(--color-charcoal);   color: var(--color-cream); }
+  .section-terracotta { background: var(--color-terracotta); color: var(--color-cream); }
+  .section-padding    { padding: 5rem 1.5rem; }
+  @media (min-width: 768px) {
+    .section-padding  { padding: 7rem 2rem; }
+  }
+
+  /* Paper texture overlay */
+  .paper-texture { position: relative; }
+  .paper-texture::before {
+    content: ''; position: absolute; inset: 0; opacity: .03; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: var(--color-ochre); color: var(--color-forest);
+    padding: .875rem 2rem; font-weight: 600; font-size: .8125rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    transition: opacity .2s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { opacity: .9; }
+  .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: transparent; color: var(--color-forest);
+    border: 2px solid var(--color-forest);
+    padding: .8125rem 1.875rem; font-weight: 600; font-size: .8125rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    transition: background-color .2s, color .2s; cursor: pointer;
+  }
+  .btn-secondary:hover { background: var(--color-forest); color: var(--color-cream); }
+
+  .btn-terracotta {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: var(--color-terracotta); color: var(--color-cream);
+    padding: .875rem 2rem; font-weight: 600; font-size: .8125rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    transition: background-color .2s; border: none; cursor: pointer;
+  }
+  .btn-terracotta:hover { background: var(--color-terracotta-dark); }
+
+  /* Editorial input */
+  .input-editorial {
+    width: 100%;
+    background: var(--color-cream);
+    color: var(--color-charcoal);
+    border: 1px solid var(--color-charcoal);
+    padding: .75rem 1rem;
+    font-size: .875rem;
+    font-family: var(--font-sans);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .input-editorial::placeholder { color: color-mix(in srgb, var(--color-charcoal) 45%, transparent); }
+  .input-editorial:focus {
+    outline: none;
+    border-color: var(--color-terracotta);
+    box-shadow: inset 0 0 0 1px var(--color-terracotta);
+  }
+
+  /* Badges */
+  .badge-live {
+    display: inline-block; padding: .25rem .75rem; font-size: .65rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    background: var(--color-terracotta); color: var(--color-cream);
+  }
+  .badge-soon {
+    display: inline-block; padding: .25rem .75rem; font-size: .65rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--color-ochre); border: 1px dashed var(--color-ochre);
+  }
+
+  /* Rules */
+  .rule-charcoal { border: none; height: 2px; background: var(--color-charcoal); width: 100%; }
+  .rule-gold     { border: none; height: 2px; background: var(--color-ochre); width: 100%; }
 }
