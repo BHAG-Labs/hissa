@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Hissa">
+  <title>Hissa — Share, Stake</title>
+  <rect width="256" height="256" fill="#f1ebe1"/>
+  <!-- Pie / share wheel -->
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#1a1a1a" stroke-width="6"/>
+  <!-- Founder slice (terracotta, ~45%) -->
+  <path d="M128 128 L128 36 A92 92 0 0 1 218 116 Z" fill="#c1502e"/>
+  <!-- Co-founder slice (forest, ~25%) -->
+  <path d="M128 128 L218 116 A92 92 0 0 1 178 210 Z" fill="#2a4942"/>
+  <!-- ESOP slice (ochre, ~15%) -->
+  <path d="M128 128 L178 210 A92 92 0 0 1 90 215 Z" fill="#c89b27"/>
+  <!-- Centre dot -->
+  <circle cx="128" cy="128" r="14" fill="#f1ebe1" stroke="#1a1a1a" stroke-width="4"/>
+</svg>

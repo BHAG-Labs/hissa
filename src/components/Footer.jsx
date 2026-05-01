@@ -13,7 +13,7 @@ export default function Footer() {
             <a href="https://neev.bhaglabs.com" className="hover:text-cream transition-colors">Neev</a>
             <a href="https://hissa.bhaglabs.com" className="hover:text-cream transition-colors">Hissa</a>
             <a href="https://pitchwala.bhaglabs.com" className="hover:text-cream transition-colors">Pitchwala</a>
-            <a href="https://vyapaar.bhaglabs.com" className="hover:text-cream transition-colors">Vyapaar</a>
+            <a href="https://yantra.bhaglabs.com" className="hover:text-cream transition-colors">Yantra</a>
             <a href="https://bazaar.bhaglabs.com" className="hover:text-cream transition-colors">Bazaar</a>
           </nav>
         </div>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" role="img" aria-label="Hissa">
+  <title>Hissa — Share, Stake</title>
+  <g transform="translate(0,8)">
+    <circle cx="92" cy="92" r="76" fill="none" stroke="#1a1a1a" stroke-width="5"/>
+    <path d="M92 92 L92 16 A76 76 0 0 1 166 82 Z" fill="#c1502e"/>
+    <path d="M92 92 L166 82 A76 76 0 0 1 134 158 Z" fill="#2a4942"/>
+    <path d="M92 92 L134 158 A76 76 0 0 1 56 166 Z" fill="#c89b27"/>
+    <circle cx="92" cy="92" r="11" fill="#f1ebe1" stroke="#1a1a1a" stroke-width="3"/>
+  </g>
+  <g transform="translate(204,124)">
+    <text font-family="Playfair Display, Georgia, serif" font-weight="900" font-size="78" letter-spacing="-1" fill="#1a1a1a">Hissa</text>
+    <text x="0" y="40" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-weight="500" font-size="28" fill="#2a4942">हिस्सा — your share</text>
+  </g>
+</svg>
